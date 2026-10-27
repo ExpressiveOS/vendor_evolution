@@ -20,11 +20,16 @@ LINEAGE_TARGET_PACKAGE := $(PRODUCT_OUT)/$(LINEAGE_VERSION).zip
 
 SHA256 := prebuilts/build-tools/path/$(HOST_PREBUILT_TAG)/sha256sum
 
-$(LINEAGE_TARGET_PACKAGE): $(INTERNAL_OTA_PACKAGE_TARGET)
+# ExpressiveOS keeps the target-files zip the package is made from: every incremental
+# OTA from this build starts from it. Only the unpacked copy and its file list go.
+# The zip is made before the package, because ota_from_target_files may rewrite
+# META/dynamic_partitions_info.txt in the unpacked copy (disable_ublk) while it runs.
+$(INTERNAL_OTA_PACKAGE_TARGET): | $(BUILT_TARGET_FILES_PACKAGE)
+$(LINEAGE_TARGET_PACKAGE): $(INTERNAL_OTA_PACKAGE_TARGET) $(BUILT_TARGET_FILES_PACKAGE)
 	$(hide) mv -f $(INTERNAL_OTA_PACKAGE_TARGET) $(LINEAGE_TARGET_PACKAGE)
 	$(hide) $(SHA256) $(LINEAGE_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(LINEAGE_TARGET_PACKAGE).sha256sum
 	$(hide) ./vendor/lineage/build/tools/createjson.py $(TARGET_DEVICE) $(PRODUCT_OUT) $(LINEAGE_VERSION).zip $(TARGET_BUILD_VARIANT) $(WITH_GMS)
-	$(hide) rm -rf $(call intermediates-dir-for,PACKAGING,target_files)
+	$(hide) rm -rf $(patsubst %.zip,%,$(BUILT_TARGET_FILES_PACKAGE)) $(BUILT_TARGET_FILES_DIR)
 	$(hide) ./vendor/lineage/build/tasks/ascii_output.sh
 	@echo "Package Complete: $(LINEAGE_TARGET_PACKAGE)" >&2
 

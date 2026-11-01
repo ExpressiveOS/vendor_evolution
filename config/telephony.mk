@@ -30,10 +30,6 @@ endif
 PRODUCT_PRODUCT_PROPERTIES += \
     net.tethering.noprovisioning=true
 
-# Disable mobile data by default
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.com.android.mobiledata=false
-
 # BCR
 TARGET_INCLUDE_BCR ?= true
 ifeq ($(TARGET_INCLUDE_BCR),true)

@@ -37,7 +37,7 @@ DONT_DEXPREOPT_PREBUILTS := true
 RELAX_USES_LIBRARY_CHECK=true
 endif
 
-PRODUCT_BRAND ?= EvolutionX
+PRODUCT_BRAND ?= ExpressiveOS
 
 # Enable background blur for widget picker
 PRODUCT_SYSTEM_EXT_PROPERTIES += \

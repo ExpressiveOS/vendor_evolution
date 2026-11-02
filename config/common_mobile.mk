@@ -44,10 +44,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_COPY_FILES += \
     frameworks/native/data/etc/android.software.freeform_window_management.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/permissions/android.software.freeform_window_management.xml
 
-# Legal
-PRODUCT_PRODUCT_PROPERTIES += \
-    ro.evolutionlegal.url=https://evolution-x.org/legal.php
-
 # Media
 PRODUCT_PRODUCT_PROPERTIES += \
     media.recorder.show_manufacturer_and_model=true

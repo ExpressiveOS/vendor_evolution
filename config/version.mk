@@ -1,7 +1,8 @@
 PRODUCT_VERSION_MAJOR = 17
 PRODUCT_VERSION_MINOR = 0
 
-# Increase EVO Version with each major release.
+# The upstream release this tree started from. Nothing reads it: ExpressiveOS's
+# own version is EXPRESSIVE_VERSION below.
 EVO_VERSION_BASE := 12.3
 EVO_BUILD_TYPE ?= Unofficial
 
@@ -12,7 +13,6 @@ $(error EVO_BUILD_TYPE must be Official or Unofficial. Current value: $(EVO_BUIL
 endif
 
 # ExpressiveOS's own version, which the zip name, Settings and the Updater show.
-# EVO_VERSION_BASE stays: it's the Evolution X release this tree is built on.
 EXPRESSIVE_VERSION := 1.0
 
 ifeq ($(WITH_GMS),true)
@@ -33,7 +33,7 @@ LINEAGE_VERSION := ExpressiveOS-$(PRODUCT_VERSION_MAJOR).$(PRODUCT_VERSION_MINOR
 # Display version
 LINEAGE_DISPLAY_VERSION := v$(EVO_VERSION)-$(EXPRESSIVE_DATE)
 
-# Evolution X version properties
+# Version properties
 PRODUCT_PRODUCT_PROPERTIES += \
     ro.evolution.build.type=$(EVO_BUILD_TYPE) \
     ro.evolution.build.version=$(LINEAGE_VERSION) \

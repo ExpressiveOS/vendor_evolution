@@ -1,2 +1,42 @@
-Evolution X
-===========
+ExpressiveOS vendor config
+==========================
+
+This is `vendor/lineage` for ExpressiveOS, an Android 17 ROM for Google Pixel
+phones built on LineageOS 24.0. It is based on LineageOS's own
+[vendor/lineage](https://github.com/LineageOS/android_vendor_lineage) and keeps
+its layout and its `lineage_<device>` product names. On top of LineageOS's
+config it carries what every ExpressiveOS phone shares:
+
+* `config/`: the product configuration each device tree inherits (common
+  packages, properties, version and build type).
+* `build/`: the build environment (`build/envsetup.sh`, which the tree's
+  `build/envsetup.sh` sources) and the build tasks, among them the OTA package
+  and the target-files zip it is made from.
+* `overlay/`: resource overlays for the framework and apps, including the
+  default wallpaper.
+* `prebuilt/`, `bootanimation/`, `audio/`: files copied into the images.
+
+Getting the source
+------------------
+
+ExpressiveOS's [manifest](https://github.com/ExpressiveOS/manifest) lists every
+project, so no local manifests are needed:
+
+    repo init -u https://github.com/ExpressiveOS/manifest -b expressiveos --git-lfs
+    repo sync -c -j4 --no-clone-bundle --no-tags
+
+Building
+--------
+
+ExpressiveOS is built with its build kit, which sets up the tree, adds
+ExpressiveOS's boot animation and wallpapers, and makes, checks and signs each
+build. The manifest's README says where the kit is and how to run it.
+
+A product that installs `bootanimation.zip` must set `TARGET_BOOTANIMATION`:
+this tree has no default boot animation, and the build stops without one.
+
+License
+-------
+
+Apache License 2.0, see [LICENSE](LICENSE). Files keep the copyright notices of
+the projects that wrote them.

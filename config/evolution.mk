@@ -14,7 +14,7 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
 endif
 endif
 
-# Evolution X packages
+# Apps ExpressiveOS adds on top of LineageOS
 PRODUCT_PACKAGES += \
     AxSandbox \
     AxThemeStore \

@@ -33,11 +33,6 @@ endif
 PRODUCT_PACKAGES += \
     Updater
 
-ifeq ($(WITH_GMS),false)
-PRODUCT_PACKAGES += \
-    UpdaterVanillaOverlay
-endif
-
 # LMO packages
 PRODUCT_PACKAGES += \
     LMOFreeform \

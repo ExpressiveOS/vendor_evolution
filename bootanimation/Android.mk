@@ -15,8 +15,14 @@
 # limitations under the License.
 #
 
+# No default boot animation: a product that installs bootanimation.zip sets
+# TARGET_BOOTANIMATION to the zip it ships (ExpressiveOS's products get theirs from
+# the build kit's bootanimation.mk, through vendor/extra/product.mk). Without one
+# the build stops here instead of falling back to another ROM's animation.
 ifeq ($(TARGET_BOOTANIMATION),)
-    TARGET_BOOTANIMATION := vendor/lineage/bootanimation/prebuilts/bootanimation.zip
+ifneq ($(filter bootanimation.zip,$(PRODUCT_PACKAGES)),)
+    $(error $(TARGET_PRODUCT) installs bootanimation.zip but sets no TARGET_BOOTANIMATION. Set it to the boot animation zip to ship (ExpressiveOS's build kit does, with bootanimation/apply-bootanim.sh))
+endif
 endif
 
 include $(CLEAR_VARS)

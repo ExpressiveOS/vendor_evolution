@@ -935,7 +935,20 @@ function build_kernel() {
         echo "Skipping kernel build"
         return
     fi
-    local lineage_version=$(grep -r '<default revision=' ${ANDROID_BUILD_TOP}/evolution/manifest/default.xml | cut -d':' -f2 | sed -E 's/.*refs\/heads\/(lineage-[0-9.]+).*/\1/')
+    # The kernel manifest's branch: the LineageOS branch the tree's manifest defaults to
+    # (its <default ... revision="refs/heads/lineage-N"/>, attributes in any order), else
+    # lineage-24.0
+    local lineage_version=
+    local tree_manifest="${ANDROID_BUILD_TOP}/.repo/manifests/default.xml"
+    if [ -f "${tree_manifest}" ]; then
+        lineage_version=$(tr '\n' ' ' < "${tree_manifest}" \
+            | grep -oE '<default[[:space:]][^>]*>' | head -n 1 \
+            | grep -oE "[[:space:]]revision=(\"[^\"]*\"|'[^']*')" \
+            | sed -E "s/^[[:space:]]*revision=[\"']//; s/[\"']\$//; s|^refs/heads/||")
+    fi
+    if [[ ! "${lineage_version}" =~ ^lineage-[0-9.]+$ ]]; then
+        lineage_version=lineage-24.0
+    fi
 
     local target_kernel_device="$(_get_build_var_cached TARGET_KERNEL_DEVICE)"
     local target_kernel_dir="${ANDROID_BUILD_TOP}/$(_get_build_var_cached TARGET_KERNEL_DIR)"

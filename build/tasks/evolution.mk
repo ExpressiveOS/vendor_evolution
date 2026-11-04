@@ -14,7 +14,7 @@
 # limitations under the License.
 
 # -----------------------------------------------------------------
-# Evolution X OTA update package
+# ExpressiveOS OTA update package
 
 LINEAGE_TARGET_PACKAGE := $(PRODUCT_OUT)/$(LINEAGE_VERSION).zip
 
@@ -28,7 +28,6 @@ $(INTERNAL_OTA_PACKAGE_TARGET): | $(BUILT_TARGET_FILES_PACKAGE)
 $(LINEAGE_TARGET_PACKAGE): $(INTERNAL_OTA_PACKAGE_TARGET) $(BUILT_TARGET_FILES_PACKAGE)
 	$(hide) mv -f $(INTERNAL_OTA_PACKAGE_TARGET) $(LINEAGE_TARGET_PACKAGE)
 	$(hide) $(SHA256) $(LINEAGE_TARGET_PACKAGE) | sed "s|$(PRODUCT_OUT)/||" > $(LINEAGE_TARGET_PACKAGE).sha256sum
-	$(hide) ./vendor/lineage/build/tools/createjson.py $(TARGET_DEVICE) $(PRODUCT_OUT) $(LINEAGE_VERSION).zip $(TARGET_BUILD_VARIANT) $(WITH_GMS)
 	$(hide) rm -rf $(patsubst %.zip,%,$(BUILT_TARGET_FILES_PACKAGE)) $(BUILT_TARGET_FILES_DIR)
 	$(hide) ./vendor/lineage/build/tasks/ascii_output.sh
 	@echo "Package Complete: $(LINEAGE_TARGET_PACKAGE)" >&2

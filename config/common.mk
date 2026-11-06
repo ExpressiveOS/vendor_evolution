@@ -375,8 +375,8 @@ PRODUCT_PACKAGE_OVERLAYS += \
 
 PRODUCT_PACKAGES += \
     DocumentsUIOverlay \
+    ExpressiveOSNfcOverlay \
     NetworkStackOverlay \
-    NfcOverlay \
     PermissionControllerOverlay \
     SettingsExpressiveOS
 

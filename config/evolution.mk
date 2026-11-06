@@ -96,7 +96,7 @@ PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
     system/etc/preloaded-classes
 
 # Private keys
-ifeq ($(EVO_BUILD_TYPE),Official)
+ifeq ($(EXPRESSIVE_BUILD_TYPE),Official)
 include vendor/evolution-priv/keys/keys.mk
 else
 -include vendor/evolution-priv/keys/keys.mk

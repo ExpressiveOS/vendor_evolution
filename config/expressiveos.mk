@@ -24,11 +24,9 @@ PRODUCT_PACKAGES += \
     OmniJaws \
     OmniStyle
 
-# Skip AppDataBackup on Pixel devices
-ifeq ($(filter Google google,$(PRODUCT_MANUFACTURER)),)
-PRODUCT_PACKAGES += \
-    AppDataBackup
-endif
+# No AppDataBackup (Daryl, 2026-11-07): it wrote unencrypted copies of other apps' data to
+# shared storage by default. Its old skip-on-Pixel test read PRODUCT_MANUFACTURER, which
+# inherited product makefiles never see, so every phone shipped it.
 
 PRODUCT_PACKAGES += \
     Updater

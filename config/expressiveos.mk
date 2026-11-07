@@ -96,10 +96,10 @@ PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
     system/etc/preloaded-classes
 
 # Private keys
-ifeq ($(EVO_BUILD_TYPE),Official)
-include vendor/evolution-priv/keys/keys.mk
+ifeq ($(EXPRESSIVE_BUILD_TYPE),Official)
+include vendor/expressiveos-priv/keys/keys.mk
 else
--include vendor/evolution-priv/keys/keys.mk
+-include vendor/expressiveos-priv/keys/keys.mk
 endif
 
 # PERF_ANIM_OVERRIDE

@@ -1,7 +1,7 @@
 # Allow vendor/extra to override any property by setting it first
 $(call inherit-product-if-exists, vendor/extra/product.mk)
-$(call inherit-product, vendor/lineage/config/evolution.mk)
-$(call inherit-product, vendor/extras/evolution.mk)
+$(call inherit-product, vendor/lineage/config/expressiveos.mk)
+$(call inherit-product, vendor/extras/expressiveos.mk)
 ifeq ($(TARGET_INCLUDE_VIPERFX),true)
 $(call inherit-product, packages/apps/ViPER4AndroidFX/config.mk)
 endif
@@ -375,10 +375,10 @@ PRODUCT_PACKAGE_OVERLAYS += \
 
 PRODUCT_PACKAGES += \
     DocumentsUIOverlay \
+    ExpressiveOSNfcOverlay \
     NetworkStackOverlay \
-    NfcOverlay \
     PermissionControllerOverlay \
-    SettingsEvo
+    SettingsExpressiveOS
 
 # Translations
 CUSTOM_LOCALES += \

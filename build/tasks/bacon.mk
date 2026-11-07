@@ -32,5 +32,10 @@ $(LINEAGE_TARGET_PACKAGE): $(INTERNAL_OTA_PACKAGE_TARGET) $(BUILT_TARGET_FILES_P
 	$(hide) ./vendor/lineage/build/tasks/ascii_output.sh
 	@echo "Package Complete: $(LINEAGE_TARGET_PACKAGE)" >&2
 
+.PHONY: bacon
+bacon: $(LINEAGE_TARGET_PACKAGE) $(DEFAULT_GOAL)
+
+# The goal's old name, kept for one release so older scripts and a reverted kit
+# that run "mka evolution" still build the package. It goes in 1.2.
 .PHONY: evolution
-evolution: $(LINEAGE_TARGET_PACKAGE) $(DEFAULT_GOAL)
+evolution: bacon

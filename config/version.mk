@@ -12,7 +12,7 @@ $(error EXPRESSIVE_BUILD_TYPE must be Official or Unofficial. Current value: $(E
 endif
 
 # ExpressiveOS's own version, which the zip name, Settings and the Updater show.
-EXPRESSIVE_VERSION := 1.1
+EXPRESSIVE_VERSION := 1.1.1
 
 ifeq ($(WITH_GMS),true)
 EXPRESSIVE_MODVERSION := $(EXPRESSIVE_VERSION)

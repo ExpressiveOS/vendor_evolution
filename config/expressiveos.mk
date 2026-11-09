@@ -31,6 +31,10 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     Updater
 
+# Changelog
+PRODUCT_PACKAGES += \
+    Changelog.txt
+
 # LMO packages
 PRODUCT_PACKAGES += \
     LMOFreeform \

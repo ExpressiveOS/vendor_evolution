@@ -19,7 +19,7 @@ PRODUCT_PACKAGES += \
     AxSandbox \
     AxThemeStore \
     BatteryStatsViewer \
-    EvoEgg \
+    ExpressiveEgg \
     GameSpace \
     OmniJaws \
     OmniStyle

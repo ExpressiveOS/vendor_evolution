@@ -1,5 +1,8 @@
 on post-fs-data
     # Create an additional OTA package directory that unlike /data/ota_package
     # will not be touched by GmsCore.
-    mkdir /data/evolution_updates 0770 system cache encryption=Require
-    restorecon_recursive /data/evolution_updates
+    mkdir /data/expressiveos_updates 0770 system cache encryption=Require
+    restorecon_recursive /data/expressiveos_updates
+    # The folder through 1.2. The Updater empties it once it starts; this removes it on the
+    # boot after that, and does nothing while it still holds files or once it is gone.
+    rmdir /data/evolution_updates
